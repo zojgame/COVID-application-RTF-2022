@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   image: {
     width: 270,
     height: 270,
-
   },
   text: {
     fontFamily: 'Anton',
