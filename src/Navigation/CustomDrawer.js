@@ -7,7 +7,6 @@ import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawe
 export default function CustomDrawer(props) {
   return (
     <View style={{ flex: 1 }}>
-
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{ backgroundColor: '#9BA5CA' }}
