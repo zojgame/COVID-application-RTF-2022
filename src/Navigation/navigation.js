@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Text , View, StyleSheet} from 'react-native';
 import HomePage from '../Pages/HomePage';
 import ProfilePage from '../Pages/ProfilePage';
+import SettingPage from '../Pages/SettingPage';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ExercisesPage from '../Pages/ExercisesPage';
 
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import CustomDrawer from './CustomDrawer';
@@ -26,7 +29,7 @@ const ProfileBtn = function (props) {
         </View>);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  
   container: {
     flex: 1,
     alignItems: "center",
@@ -46,37 +49,76 @@ const styles = StyleSheet.create({
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
+      <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}
+      screenOptions={ 
+        {drawerLabelStyle:{marginLeft: -20,
+        fontSize: 15},
+        drawerActiveBackgroundColor:'rgb(141, 116, 200)',
+        drawerActiveTintColor: '#fff'}}>
       <Drawer.Screen
           name="HomePage"
           component={HomePage}
           options={({ navigation }) => ({
+            drawerIcon: ({color}) => (
+              <Ionicons name='home-outline' size={22} color={color} />
+  ),
             title: 'Главная',
             headerRight: () => <ProfileBtn navigation={navigation} />,
           })}
         />
-         <Drawer.Screen 
+         <Drawer.Screen
           screenOptions = {{headerShown:false}}
           name="ProfilePage"
           
           component={ProfilePage}
           options={( { navigation }) => ({
+            drawerIcon: ({color}) => (
+              <Ionicons name='person-outline' size={22} color={color} />
+  ),
             title: 'Профиль',
             headerRight: () => <ProfileBtn navigation={navigation} />,
             
           })}
         />
         <Drawer.Screen
-        
-          name="AuthorizationPage"
+          name="SettingPage"
+          component={SettingPage}
+          options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name='settings-outline' size={22} color={color} />
+  ),
+            title: 'Настройки',
+          }}/>
+          <Drawer.Screen
+          name='ExercisesPage'
+          component={ExercisesPage}
+          options={{            
+            title: 'Упражнения',
+            drawerIcon:({color}) =>(
+              <Ionicons name="barbell-outline" size={22} color={color}/>
+            )           
+          }}          
+        /> 
+        <Drawer.Screen
+          name='AuthorizationPage'
           component={AuthorizationPage}
           options={{
             title: 'Авторизация',
-            
-          }}
-          
-        />
+          }}          
+        />      
+        
+             
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
+
+const screen = function(props){
+  <Drawer.Screen
+          name= {props.name} 
+          component={props.component}
+          options={props.options}
+        />      
+
+}
+

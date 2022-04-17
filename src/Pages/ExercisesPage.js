@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { View, Text,  } from 'react-native';
 
 
-function HomePage(props) {
+function ExercisesPage(props) {
   return (
     <View>
-      <Text>HomePage</Text>
+      <Text>ExercisesPage</Text>
     </View>
   );
 }
 
-export default HomePage;
+export default ExercisesPage;
 
 
