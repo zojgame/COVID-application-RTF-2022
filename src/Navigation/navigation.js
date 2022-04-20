@@ -1,48 +1,17 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import {Text,View, StyleSheet} from 'react-native';
 import HomePage from '../Pages/HomePage';
 import ProfilePage from '../Pages/ProfilePage';
 import SettingPage from '../Pages/SettingPage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ExercisesPage from '../Pages/ExercisesPage';
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
+import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {ImageBackground} from 'react-native-web';
+import { ProfileBtn } from '../Pages/ProfilePage';
 
 const Drawer = createDrawerNavigator();
-
-const ProfileBtn = function (props) {
-    return(
-        <View>
-            <TouchableOpacity
-                style={styles.btn}
-                onPress={() => {props.navigation.navigate('AuthorizationPage')}}>
-                <ImageBackground source={require("../Images/profile.png")} style={styles.img}>
-                    <Text style={styles.title}></Text>
-                </ImageBackground>
-            </TouchableOpacity>
-        </View>);
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    btn : {
-        marginRight: 10,
-    },
-    img : {
-    },
-    title: {
-        color: "white",
-        padding: 25,
-    }
-});
 
 export default function Navigation() {
     return (
@@ -103,12 +72,23 @@ export default function Navigation() {
                     })}
                 />
                 <Drawer.Screen
+                    name='NotesPage'
+                    component={NotesPage}
+                    options={({navigation}) => ({
+                        title: 'Заметки',
+                    headerRight: () => <ProfileBtn navigation={navigation}/>,
+                    drawerIcon: ({color}) => (
+                        <Ionicons name="bookmarks-outline" size={22} color={color}/>
+                    )
+                    })}
+                />
+                <Drawer.Screen
                     name='AuthorizationPage'
                     component={AuthorizationPage}
                     options={{
                         title: 'Авторизация',
                     }}
-                />
+                />                
             </Drawer.Navigator>
         </NavigationContainer>
     );

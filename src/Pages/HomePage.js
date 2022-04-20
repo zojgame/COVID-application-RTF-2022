@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import {View, Text, ScrollView, Image, StyleSheet, ImageBackground, Dimensions} from 'react-native';
+import { deviceHeight, deviceWidth } from "../const";
 
-const deviceHeight = Dimensions.get("window").height ;
-const deviceWidth = Dimensions.get("window").width ;
 const styles=StyleSheet.create({
     image1:{
         height: deviceHeight*35/100,
@@ -18,7 +17,7 @@ const styles=StyleSheet.create({
         marginLeft:deviceHeight*3/100,
         marginRight:deviceHeight*3/100,
         textAlign:"center",
-        border:'3px solid rgb(121, 206, 231)',
+        // border:'3px solid rgb(121, 206, 231)',
         borderRadius:20,
         backgroundColor:'rgba(89, 134, 247,0.6);'
     },
@@ -35,16 +34,19 @@ const styles=StyleSheet.create({
         color:'white',
         fontSize:25,
         width:deviceWidth*70/100,
-        borderBottom:'2px solid rgb(121, 206, 231)',
+        // borderBottom:'2px solid rgb(121, 206, 231)',
         borderRadius:15,
         alignSelf:'center',
         textAlign:'center',
         paddingLeft:10,
         paddingRight:10,
-        backgroundColor:'rgba(89, 134, 247,0.3);'
+        backgroundColor:'rgba(89, 134, 247,0.6)',
+        marginBottom: 10,
+        marginTop: 10
 
     },
     descriptionText:{
+        marginBottom: 10,
         fontSize:20,
         width:deviceWidth*90/100,
         alignSelf:'center',
@@ -53,7 +55,7 @@ const styles=StyleSheet.create({
         color:'rgba(95, 145, 240,1);',
         borderRadius:5,
         borderLeftWidth: 10,
-        borderLeftColor:'rgb(150, 177, 245);',
+        borderLeftColor:'rgb(150, 177, 245)',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
