@@ -1,7 +1,7 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import HomePage from '../Pages/HomePage';
+import HomePage from '../Pages/HomePage/HomePage';
 import ProfilePage from '../Pages/ProfilePage';
 import SettingPage from '../Pages/SettingPage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,6 +10,9 @@ import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
 import { ProfileBtn } from '../Pages/ProfilePage';
+
+import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
+
 const Drawer = createDrawerNavigator();
 
 
@@ -29,7 +32,7 @@ export default function Navigation() {
                                   }}>
                 <Drawer.Screen
                     name="HomePage"
-                    component={HomePage}
+                    component={HomePageConstructor}
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
                             <Ionicons name='home-outline' size={22} color={color}/>
