@@ -75,7 +75,8 @@ const styles=StyleSheet.create({
 
 function HomePage(props) {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}
+    showsVerticalScrollIndicator={false}>
         <Image style={styles.image1} source={require('../Images/homepage3.webp')}/>
         <Text style={styles.text}>{"Данное приложение поможет вам реабилитироваться после перенесенной болезни Covid-19."}</Text>
         <View style={styles.description}>

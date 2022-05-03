@@ -10,8 +10,9 @@ import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
 import { ProfileBtn } from '../Pages/ProfilePage';
-
 const Drawer = createDrawerNavigator();
+
+
 
 export default function Navigation() {
     return (
@@ -86,11 +87,15 @@ export default function Navigation() {
                     name='AuthorizationPage'
                     component={AuthorizationPage}
                     options={{
-                        title: 'Авторизация',
+                        headerTitle: 'Авторизация',
+                        drawerLabel : 'Авторизация',
+                        
                     }}
-                />                
-            </Drawer.Navigator>
+                />       
+                            </Drawer.Navigator>
         </NavigationContainer>
-    );
+    );    
 }
+
+
 
