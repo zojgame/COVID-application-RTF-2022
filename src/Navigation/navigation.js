@@ -13,7 +13,6 @@ import { ProfileBtn } from '../Pages/ProfilePage';
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
 
 const Drawer = createDrawerNavigator();
-
 export default function Navigation() {
     return (
         <NavigationContainer>
@@ -35,11 +34,10 @@ export default function Navigation() {
                             <Ionicons name='home-outline' size={22} color={color}/>
                         ),
                         title: 'Главная',
-                        headerRight: () => <ProfileBtn navigation={navigation}/>,
+                        headerRight: () =><ProfileBtn navigation={navigation}/>,
                     })}
                 />
                 <Drawer.Screen
-                    screenOptions={{headerShown: false}}
                     name="ProfilePage"
                     component={ProfilePage}
                     options={({navigation}) => ({
@@ -83,15 +81,9 @@ export default function Navigation() {
                     )
                     })}
                 />
-                <Drawer.Screen
-                    name='AuthorizationPage'
-                    component={AuthorizationPage}
-                    options={{
-                        title: 'Авторизация',
-                    }}
-                />                
             </Drawer.Navigator>
         </NavigationContainer>
     );
 }
+
 

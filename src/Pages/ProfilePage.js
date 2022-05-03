@@ -2,6 +2,9 @@ import React from 'react';
 import {View, Text, ScrollView, Image, StyleSheet, ImageBackground} from 'react-native';
 import { deviceHeight } from "../const";
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import AuthorizationPage from "./Authorization/AuthorizationPage";
+import {createStackNavigator} from "@react-navigation/stack";
+import {NavigationContainer} from "@react-navigation/native";
 
 const height = deviceHeight*20/100;
 const styles = StyleSheet.create({
@@ -39,19 +42,16 @@ const styles = StyleSheet.create({
         padding: 25,
     }
 })
+const Stack = createStackNavigator();
 
 export const ProfileBtn = function (props) {
-    return(
-        <View>
-            <TouchableOpacity
-                style={styles.btn}
-                onPress={() => {props.navigation.navigate('AuthorizationPage')}}>
-                <ImageBackground source={require("../Images/profile.png")} style={styles.img}>
-                    <Text style={styles.title}></Text>
-                </ImageBackground>
-            </TouchableOpacity>
-        </View>);
-}
+
+        return(
+
+
+
+        )
+    }
 
 function ProfilePage(props){
     return (        
