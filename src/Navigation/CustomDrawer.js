@@ -47,17 +47,17 @@ export default function CustomDrawer(props) {
             <DrawerItemList {...props} />
           </View>               
       </DrawerContentScrollView>
-      <View style={styles.bottomContainer}>
-        <TouchableOpacity style={{marginVertical: 15}} onPress={() =>{
-        }}>
-          <View style={{flexDirection:'row', alignItems: 'center' }}>
-            <Ionicons name='exit-outline' size={22} />
-            <Text style={{paddingLeft: 15, fontFamily: 'Roboto-Medium', fontSize: 15, fontWeight: 'bold'}}>Выйти</Text>
-          </View>
-          
-        </TouchableOpacity>
-        
-      </View>
+        <View style={styles.bottomContainer}>
+            <TouchableOpacity style={{marginVertical: 15}} onPress={() =>{
+            }}>
+                <View style={{flexDirection:'row', alignItems: 'center' }}>
+                    <Ionicons name='exit-outline' size={22} />
+                    <Text style={{paddingLeft: 15, fontFamily: 'Roboto-Medium', fontSize: 15, fontWeight: 'bold'}}>Выйти</Text>
+                </View>
+
+            </TouchableOpacity>
+
+        </View>
     </View>
   );
 }

@@ -6,7 +6,6 @@ export default function HomePageConstructor(props){
     useEffect(()=>{
         covid().then(data=>changeData(data));
     },[])
-console.log(sickData)
     return(
         <HomePage newSick={sickData.NewCases} newDeaths={sickData.NewDeaths} />
     )
@@ -23,6 +22,5 @@ async function covid(){
     const data=await fetch('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/europe', options)
         .then(data=>data.json())
         .then(data=>data[3])
-
     return data;
 }
