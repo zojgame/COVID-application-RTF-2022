@@ -1,5 +1,6 @@
 import React, {Component, useState} from "react";
 import {View, Text, ScrollView, Image, StyleSheet, ImageBackground, Dimensions} from 'react-native';
+// import HorizontalScrollView
 
 import {BackgroundImage} from "react-native-elements/dist/config";
 import {LinearGradient} from "expo-linear-gradient";
@@ -9,7 +10,7 @@ const styles=HomePageStyles();
 
 function HomePage(props) {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>
         <View style={styles.block1}>
             <BackgroundImage style={styles.backImage} resizeMode={'stretch'} source={require('../../Images/homePageBackg.png')}>
                 <View style={styles.headerTxtBlock}>
@@ -25,7 +26,7 @@ function HomePage(props) {
         </View>
         <View style={styles.linksBlock}>
             <Text style={styles.linksBlockTitle}>Полезные ссылки:</Text>
-            <View style={styles.links}>
+            <ScrollView style={styles.links} showsVerticalScrollIndicator={false} horizontal={true}>
                 <LinearGradient start={{x:0,y:0}} end={{x:100,y:100}} colors={['#00bffe','#007dd3']} style={styles.linksItem}>
                     <Text style={styles.linksTxt}>Время на восстановление</Text>
                     <Image style={styles.linksImage} resizeMode={'contain'} source={require('../../Images/homePageTime.png')}/>
@@ -38,7 +39,7 @@ function HomePage(props) {
                     <Text style={styles.linksTxt}>Воздействия на организм</Text>
                     <Image style={styles.linksImage} resizeMode={'contain'} source={require('../../Images/homePageTasks.png')}/>
                 </LinearGradient>
-            </View>
+            </ScrollView>
         </View>
         <View style={styles.containterStat}>
             <View style={styles.imgStatBlock}>

@@ -17,10 +17,16 @@ export default function HomePageStyles() {
             height: '55vw',
         },
         headerTxtBlock: {
-            marginTop: '33%',
+            marginTop: '22%',
+            paddingLeft: '2vw',
         },
         headerTxt: {
-            textAlign: 'center',
+            fontWeight:'300',
+            lineHeight: '12vw',
+            letterSpacing: '2vw',
+            paddingBottom: 200,
+
+            textAlign: 'left',
             color: 'white',
             backgroundColor: 'rgba(141, 116, 200,0.3);',
             fontSize: '10vw',
@@ -49,12 +55,14 @@ export default function HomePageStyles() {
             backgroundColor: 'white',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-evenly'
+            justifyContent: 'space-evenly',
+            paddingLeft: '2vw'
 
         },
         linksBlockTitle: {
+            fontWeight: '600',
             color: 'black',
-            fontSize: '7vw',
+            fontSize: '7vw',            
         },
         links: {
             display: 'flex',
@@ -64,6 +72,7 @@ export default function HomePageStyles() {
             whiteSpace: 'nowrap',
         },
         linksItem: {
+            marginRight: 20,
             margin: 2,
             padding: '3vw',
             width: '37vw',
@@ -74,6 +83,7 @@ export default function HomePageStyles() {
             justifyContent: 'space-between'
         },
         linksTxt: {
+            
             color: 'white',
             fontSize: '4vw',
         },
@@ -105,6 +115,7 @@ export default function HomePageStyles() {
         },
 
         contentStatBlock: {
+            
             display: 'flex',
             width: '60vw',
             flexDirection: 'column',

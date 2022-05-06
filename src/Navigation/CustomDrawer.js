@@ -28,10 +28,8 @@ const styles = StyleSheet.create({
         color:'rgb(141,116,200)'
     },
     bottomContainer:{
-      padding: 20, 
-      borderTopWidth: 1, 
-      borderTopColor: '#ccc',
-      marginTop: 200
+      padding: 20,
+      paddingTop: '45%'
     }
 });
 

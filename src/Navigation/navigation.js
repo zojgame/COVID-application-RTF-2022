@@ -10,9 +10,13 @@ import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
 import { ProfileBtn } from '../Pages/ProfilePage';
+
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
 
 const Drawer = createDrawerNavigator();
+
+
+
 export default function Navigation() {
     return (
         <NavigationContainer>
@@ -34,10 +38,11 @@ export default function Navigation() {
                             <Ionicons name='home-outline' size={22} color={color}/>
                         ),
                         title: 'Главная',
-                        headerRight: () =><ProfileBtn navigation={navigation}/>,
+                        headerRight: () => <ProfileBtn navigation={navigation}/>,
                     })}
                 />
                 <Drawer.Screen
+                    screenOptions={{headerShown: false}}
                     name="ProfilePage"
                     component={ProfilePage}
                     options={({navigation}) => ({
@@ -75,15 +80,22 @@ export default function Navigation() {
                     component={NotesPage}
                     options={({navigation}) => ({
                         title: 'Заметки',
-                    headerRight: () => <ProfileBtn navigation={navigation}/>,
-                    drawerIcon: ({color}) => (
-                        <Ionicons name="bookmarks-outline" size={22} color={color}/>
-                    )
+                        headerRight: () => <ProfileBtn navigation={navigation}/>,
+                        drawerIcon: ({color}) => (
+                            <Ionicons name="bookmarks-outline" size={22} color={color}/>
+                        )
                     })}
+                />
+                <Drawer.Screen
+                    name='AuthorizationPage'
+                    component={AuthorizationPage}
+                    options={{
+                        headerTitle: 'Авторизация',
+                        drawerLabel : 'Авторизация',
+
+                    }}
                 />
             </Drawer.Navigator>
         </NavigationContainer>
     );
 }
-
-
