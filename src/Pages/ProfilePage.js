@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 0,
     },
     profileImage : {
-        height: height,
+        height: {height},
         margin: 10
     },
 
@@ -59,7 +59,6 @@ function ProfilePage(props){
             <View style={styles.profileBlock}>
                 <View style={styles.imageContainer}>
                     <Image style={styles.profileImage} source={require('../Images/profilePage.png')}/>
-                    
                 </View>
                 <Text style={styles.profileText}>ProfiledsaPage</Text>
             </View>            
