@@ -5,7 +5,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import ProfilePage from '../Pages/ProfilePage';
 import SettingPage from '../Pages/SettingPage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ExercisesPage from '../Pages/ExercisesPage';
+import ExercisesPage from '../Pages/ExercisesPage/ExercisesPage';
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
@@ -32,7 +32,7 @@ export default function Navigation() {
                                   }}>
                 <Drawer.Screen
                     name="HomePage"
-                    component={HomePageConstructor}
+                    component={ExercisesPage}//HomePageConstructor
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
                             <Ionicons name='home-outline' size={22} color={color}/>

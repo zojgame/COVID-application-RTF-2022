@@ -25,7 +25,6 @@ export default function HomePageStyles() {
             lineHeight: '12vw',
             letterSpacing: '2vw',
             paddingBottom: 200,
-
             textAlign: 'left',
             color: 'white',
             backgroundColor: 'rgba(141, 116, 200,0.3);',
@@ -51,7 +50,6 @@ export default function HomePageStyles() {
         },
         linksBlock: {
             marginTop: 0,
-            height: 200,
             backgroundColor: 'white',
             display: 'flex',
             flexDirection: 'column',
@@ -72,7 +70,7 @@ export default function HomePageStyles() {
             whiteSpace: 'nowrap',
         },
         linksItem: {
-            marginRight: 20,
+            marginRight: '2vw',
             margin: 2,
             padding: '3vw',
             width: '37vw',
@@ -83,7 +81,6 @@ export default function HomePageStyles() {
             justifyContent: 'space-between'
         },
         linksTxt: {
-            
             color: 'white',
             fontSize: '4vw',
         },
@@ -115,7 +112,6 @@ export default function HomePageStyles() {
         },
 
         contentStatBlock: {
-            
             display: 'flex',
             width: '60vw',
             flexDirection: 'column',

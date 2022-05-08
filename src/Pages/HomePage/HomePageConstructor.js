@@ -21,6 +21,6 @@ async function covid(){
     };
     const data=await fetch('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/europe', options)
         .then(data=>data.json())
-        .then(data=>data[3])
+        .then(data=> data[3])
     return data;
 }

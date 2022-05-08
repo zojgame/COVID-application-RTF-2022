@@ -1,7 +1,5 @@
 import React, {Component, useState} from "react";
 import {View, Text, ScrollView, Image, StyleSheet, ImageBackground, Dimensions} from 'react-native';
-// import HorizontalScrollView
-
 import {BackgroundImage} from "react-native-elements/dist/config";
 import {LinearGradient} from "expo-linear-gradient";
 import  HomePageStyles from './HomePageStyles'
