@@ -1,21 +1,18 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import HomePage from '../Pages/HomePage/HomePage';
 import ProfilePage from '../Pages/ProfilePage';
 import SettingPage from '../Pages/SettingPage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ExercisesPage from '../Pages/ExercisesPage/ExercisesPage';
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
 import { ProfileBtn } from '../Pages/ProfilePage';
-
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
+import ExercisesPageStack from "./ExercisesPageStack";
+import HomePageStack from "./HomePageStack";
 
 const Drawer = createDrawerNavigator();
-
-
 
 export default function Navigation() {
     return (
@@ -32,7 +29,7 @@ export default function Navigation() {
                                   }}>
                 <Drawer.Screen
                     name="HomePage"
-                    component={ExercisesPage}//HomePageConstructor
+                    component={HomePageStack}
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
                             <Ionicons name='home-outline' size={22} color={color}/>
@@ -66,7 +63,7 @@ export default function Navigation() {
                     })}/>
                 <Drawer.Screen
                     name='ExercisesPage'
-                    component={ExercisesPage}
+                    component={ExercisesPageStack}
                     options={({navigation})=>({
                         title: 'Упражнения',
                         headerRight: () => <ProfileBtn navigation={navigation}/>,
@@ -90,8 +87,7 @@ export default function Navigation() {
                     name='AuthorizationPage'
                     component={AuthorizationPage}
                     options={{
-                        headerTitle: 'Авторизация',
-                        drawerLabel : 'Авторизация',
+                        title: 'Авторизация',
 
                     }}
                 />
@@ -99,3 +95,4 @@ export default function Navigation() {
         </NavigationContainer>
     );
 }
+

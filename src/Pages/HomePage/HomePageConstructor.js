@@ -1,13 +1,13 @@
 import React, {Component, useEffect, useState} from "react";
 import HomePage from "./HomePage";
 
-export default function HomePageConstructor(props){
+export default function HomePageConstructor({navigation}){
     let [sickData,changeData]=useState([])
     useEffect(()=>{
         covid().then(data=>changeData(data));
     },[])
     return(
-        <HomePage newSick={sickData.NewCases} newDeaths={sickData.NewDeaths} />
+        <HomePage newSick={sickData.NewCases} navigation={navigation} newDeaths={sickData.NewDeaths} />
     )
 }
 
