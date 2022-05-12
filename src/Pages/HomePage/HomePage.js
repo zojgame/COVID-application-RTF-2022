@@ -44,7 +44,7 @@ function HomePage(props) {
                 <Text style={styles.linksBlockTitle}>Полезные ссылки:</Text>
                 <ScrollView style={styles.links} showsVerticalScrollIndicator={false} horizontal={true}>
                     <TouchableWithoutFeedback onPress={()=>Linking.openURL(RecoveryUrl)}>
-                        <LinearGradient start={{x: 0, y: 0}} end={{x: 100, y: 100}} colors={['#00bffe', '#007dd3']}
+                        <LinearGradient start={{x: 0, y: 0}} end={{x: 50, y: 50}} colors={['#00bffe', '#007dd3']}
                                         style={styles.linksItem}>
                             <Text style={styles.linksTxt}>Время на восстановление</Text>
                             <Image style={styles.linksImage} resizeMode={'contain'}
