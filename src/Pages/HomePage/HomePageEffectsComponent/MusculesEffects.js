@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     },
     items:{
         margin: '4vw',
-        border: '3px dashed white',
-        borderRightWidth: 0,
-        borderLeftWidth: 0,
-        paddingBottom: '3vw',
+        paddingLeft: '2vw',
+        borderLeftColor: 'white',
+        borderLeftWidth: '3vw',
+        
     },
     textItem:{
         paddingTop: '2vw',

@@ -20,6 +20,23 @@ const RecoveryUrl='https://zdravnica.center/kompleks_mer_posle_covid19#:~:text=%
 const NutritionUrl='https://77.rospotrebnadzor.ru/index.php/press-centr/186-press-centr/9981-chto-est-chtoby-bystree-vosstanovitsya-posle-covid-19';
 const EffectUrl='http://cgon.rospotrebnadzor.ru/content/63/4223';
 function HomePage(props) {
+    // const data = fetch('http://127.0.0.1:8000/daily/', {
+    // method:'GET',
+    // mode: 'cors',
+    // headers:{
+    //     // 'Accept-Encoding': 'gzip, deflate, br',
+    //     'Content-Type': 'application/json',
+    //     // 'X-Api-Key': 'API_KEY'
+    //     'Allow':'OPTIONS',
+    //     'Content-Type': 'application/json',
+    //     'Vary': 'Accept',
+    //    'WWW-Authenticate': 'Token'
+    // }})
+    //     .then(response => response.json()) 
+    //     .then(response => console.log(response))
+    // return [data];
+
+
     return (
         <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>
             <View style={styles.block1}>
