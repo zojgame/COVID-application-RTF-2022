@@ -54,7 +54,7 @@ function AuthorizationPage(props) {
   const [passwordValue, setPassword] = useState('');
 
   function handleTaskSubmit() {
-    alert(`${loginValue} + ${passwordValue} = любовь`);
+    alert(`${loginValue} + ${passwordValue}`);
   }
 
   return (

@@ -54,7 +54,6 @@ export default function HomePageStyles() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-evenly',
-            paddingLeft: '2vw'
 
         },
         linksBlockTitle: {

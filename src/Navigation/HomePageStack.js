@@ -5,6 +5,7 @@ import MusculesEffects from "../Pages/HomePage/HomePageEffectsComponent/Muscules
 import LungsEffects from "../Pages/HomePage/HomePageEffectsComponent/LungsEffects";
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
 import HeartEffects from "../Pages/HomePage/HomePageEffectsComponent/HeartEffects";
+import LungsExercisesPage from "../Pages/ExercisesPage/ExercisesPagesComponent/LungsExercisesPage";
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,7 @@ export default function HomePageStack(props){
     return(
         <Stack.Navigator>
             <Stack.Screen name={'HomePage'}
-                          component={HomePageConstructor}
+                          component={HomePageConstructor}//HomePageConstructor
                           options={{headerShown: false}}
             />
             <Stack.Screen name={'BrainEffects'}
