@@ -7,10 +7,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
 import NotesPage from '../Pages/NotesPage';
 import CustomDrawer from './CustomDrawer';
-import { ProfileBtn } from '../Pages/ProfilePage';
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
 import ExercisesPageStack from "./ExercisesPageStack";
 import HomePageStack from "./HomePageStack";
+import {ImageBackground, Text, View} from "react-native";
+import {TouchableOpacity} from "react-native-gesture-handler";
+import ProfilePageStack from "./ProfilePageStack";
 
 const Drawer = createDrawerNavigator();
 
@@ -39,18 +41,18 @@ export default function Navigation() {
                     })}
                 />
                 <Drawer.Screen
-                    screenOptions={{headerShown: false}}
                     name="ProfilePage"
-                    component={ProfilePage}
+                    component={ProfilePageStack}
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
-                            <Ionicons name='person-outline' size={22} color={color}/>
+                            <Ionicons name='home-outline' size={22} color={color}/>
                         ),
                         title: 'Профиль',
                         headerRight: () => <ProfileBtn navigation={navigation}/>,
-
                     })}
                 />
+
+
                 <Drawer.Screen
                     name="SettingPage"
                     component={SettingPage}
@@ -83,16 +85,21 @@ export default function Navigation() {
                         )
                     })}
                 />
-                <Drawer.Screen
-                    name='AuthorizationPage'
-                    component={AuthorizationPage}
-                    options={{
-                        title: 'Авторизация',
 
-                    }}
-                />
             </Drawer.Navigator>
         </NavigationContainer>
     );
+}
+
+const ProfileBtn = function (props) {
+    return(
+        <View>
+            <TouchableOpacity
+                onPress={() => {props.navigation.navigate('ProfilePage',{screen:'AuthorisationPage'})}}>
+                <ImageBackground style={{width:'15vw',height:'15vw',marginRight:'1vw'}} source={require('../Images/profile.png')} >
+                    <Text></Text>
+                </ImageBackground>
+            </TouchableOpacity>
+        </View>);
 }
 

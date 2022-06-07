@@ -43,18 +43,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export const ProfileBtn = function (props) {
-    return(
-        <View>
-            <TouchableOpacity
-                style={styles.btn}
-                onPress={() => {props.navigation.navigate('AuthorizationPage')}}>
-                <ImageBackground source={require("../Images/profile.png")} style={styles.img}>
-                    <Text style={styles.title}></Text>
-                </ImageBackground>
-            </TouchableOpacity>
-        </View>);
-}
+
 const testProfile = new Profile();
 function ProfilePage(props){
     return (
