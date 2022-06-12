@@ -45,7 +45,7 @@ export default function Navigation() {
                     component={ProfilePageStack}
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
-                            <Ionicons name='home-outline' size={22} color={color}/>
+                            <Ionicons name='profile-outline' size={22} color={color}/>
                         ),
                         title: 'Профиль',
                         headerRight: () => <ProfileBtn navigation={navigation}/>,

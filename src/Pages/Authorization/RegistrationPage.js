@@ -5,7 +5,6 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
@@ -89,7 +88,6 @@ function RegistrationPage({navigation}) {
 
     function handleTaskSubmit() {
         getPassword(loginValue).then(res =>{
-            console.log(res)
             checkUserParams(res);
         })
     }
@@ -139,6 +137,7 @@ function RegistrationPage({navigation}) {
 }
 
 async function setUserData(userdata){
+
     try {
         await AsyncStorage.setItem('@userData', JSON.stringify(userdata))
     } catch (error){
@@ -152,8 +151,6 @@ async function getPassword(username) {
         .catch(function (error) {
             console.log('error')
         });
-
-
 }
 
 export default RegistrationPage;

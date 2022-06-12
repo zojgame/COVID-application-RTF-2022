@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AuthorizationPage from "./AuthorizationPage";
-import {View} from "react-native";
+import {View,Text} from "react-native";
 
 function AuthorizationPageConstructor(props) {
     let [loginValue, setUserLogin] = useState();
@@ -27,7 +27,7 @@ function AuthorizationPageConstructor(props) {
 
     return loginValue && passwordValue
         ? <AuthorizationPage navigation={props.navigation} login={loginValue} password={passwordValue}/>
-        : <View>Загрузка...</View>
+        : <View><Text>Загрузка...</Text></View>
 
 }
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Text, StyleSheet, Image, SafeAreaView, TextInput, Button, TouchableOpacity,
+    Text, StyleSheet, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Modal, View,
 } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -48,17 +48,80 @@ const styles = StyleSheet.create({
         marginTop: 15,
         color: '#917dab',
     },
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modal: {
+        display: "flex",
+        height: '30vw',
+        width: '80vw',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modalText: {
+        fontSize: '5vw',
+        textAlign: 'center',
+        color: 'black',
+
+    },
+    modalCloseBtn: {
+        marginTop: '2vw',
+
+    },
+    closeBtnTxt: {
+        fontSize: '4vw',
+        color: 'blue',
+        textAlign: 'center',
+    }
 });
 
 function AuthorizationPage(props) {
     let [loginValue, setLogin] = useState(props.login);
     let [passwordValue, setPassword] = useState(props.password);
+    let [isModalVisible, changeIsModalVisible] = useState(false)
+
     function handleTaskSubmit() {
-        alert(`${loginValue} + ${passwordValue}`);
+        getUserToken({username: loginValue, password: passwordValue})
+            .then(res => {
+                console.log(res)
+                checkUserToken(res)
+            })
+    }
+
+    function checkUserToken(res) {
+        if (res === 'Данной учетной записи не существует' || res === undefined) {
+            changeIsModalVisible(true);
+        }
+        else {
+            setUserToken(res).then(res=>{
+                props.navigation.navigate('HomePage')
+            })
+        }
     }
 
     return (
         <SafeAreaView style={styles.container}>
+
+            <Modal transparent={true}
+                   animationType={"fade"}
+                   visible={isModalVisible}
+                   onRequestClose={() => changeIsModalVisible(false)}
+            >
+                <TouchableOpacity disabled={true} style={styles.modalContainer}>
+                    <View style={styles.modal}>
+                        <Text style={styles.modalText}>Неправильно введен логин или пароль</Text>
+                        <TouchableOpacity style={styles.modalCloseBtn} onPress={() => changeIsModalVisible(false)}>
+                            <Text style={styles.closeBtnTxt}>Закрыть</Text>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+            </Modal>
+
             <Image style={styles.image} source={require('../../Images/LoginPage.png')}/>
             <Text style={styles.text}>Войдите в аккаунт</Text>
             <TextInput
@@ -84,7 +147,28 @@ function AuthorizationPage(props) {
         </SafeAreaView>
     );
 }
+async function setUserToken(token){
+    try {
+        await AsyncStorage.setItem('@userToken', JSON.stringify(token))
+    } catch (error){
+        console.log(error)
+    }
+}
 
+async function getUserToken(userdata) {
+
+    return fetch('http://127.0.0.1:8000/login/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(userdata),
+        }
+    ).then(res => res.json())
+        .catch(function (error) {
+            console.log('error')
+        });
+}
 
 
 export default AuthorizationPage;
