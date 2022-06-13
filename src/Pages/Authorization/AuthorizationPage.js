@@ -2,7 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {
     Text, StyleSheet, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Modal, View,
 } from 'react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useDispatch} from "react-redux";
+import {addUserToken} from "../../redux/tokenReducer";
+import {addUserData} from "../../redux/userDataReducer";
+import {getUserData} from "../../redux/asyncActions/getUserData";
 
 const styles = StyleSheet.create({
     container: {
@@ -84,24 +87,22 @@ function AuthorizationPage(props) {
     let [loginValue, setLogin] = useState(props.login);
     let [passwordValue, setPassword] = useState(props.password);
     let [isModalVisible, changeIsModalVisible] = useState(false)
+    let dispatch = useDispatch();
+
 
     function handleTaskSubmit() {
         getUserToken({username: loginValue, password: passwordValue})
             .then(res => {
-                console.log(res)
-                checkUserToken(res)
-            })
-    }
-
-    function checkUserToken(res) {
-        if (res === 'Данной учетной записи не существует' || res === undefined) {
-            changeIsModalVisible(true);
-        }
-        else {
-            setUserToken(res).then(res=>{
-                props.navigation.navigate('HomePage')
-            })
-        }
+                    if (res === 'Данной учетной записи не существует' || res === undefined) {
+                        changeIsModalVisible(true);
+                    } else {
+                        dispatch(addUserToken(res.token))
+                        dispatch(getUserData(res.token))
+                        props.navigation.replace('HomePage')
+                        props.navigation.navigate('HomePage')
+                    }
+                }
+            )
     }
 
     return (
@@ -147,13 +148,7 @@ function AuthorizationPage(props) {
         </SafeAreaView>
     );
 }
-async function setUserToken(token){
-    try {
-        await AsyncStorage.setItem('@userToken', JSON.stringify(token))
-    } catch (error){
-        console.log(error)
-    }
-}
+
 
 async function getUserToken(userdata) {
 

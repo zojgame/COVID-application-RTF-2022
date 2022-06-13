@@ -13,6 +13,7 @@ import HomePageStack from "./HomePageStack";
 import {ImageBackground, Text, View} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import ProfilePageStack from "./ProfilePageStack";
+import {useSelector} from "react-redux";
 
 const Drawer = createDrawerNavigator();
 
@@ -45,7 +46,7 @@ export default function Navigation() {
                     component={ProfilePageStack}
                     options={({navigation}) => ({
                         drawerIcon: ({color}) => (
-                            <Ionicons name='profile-outline' size={22} color={color}/>
+                            <Ionicons name='person-outline' size={22} color={color}/>
                         ),
                         title: 'Профиль',
                         headerRight: () => <ProfileBtn navigation={navigation}/>,
@@ -92,10 +93,12 @@ export default function Navigation() {
 }
 
 const ProfileBtn = function (props) {
+    let token = useSelector(store=>store.token.token)
+    let page = token!==''?'ProfilePage':'AuthorisationPage';
     return(
         <View>
             <TouchableOpacity
-                onPress={() => {props.navigation.navigate('ProfilePage',{screen:'AuthorisationPage'})}}>
+                onPress={() => {props.navigation.navigate('ProfilePage',{screen:`${page}`})}}>
                 <ImageBackground style={{width:'15vw',height:'15vw',marginRight:'1vw'}} source={require('../Images/profile.png')} >
                     <Text></Text>
                 </ImageBackground>

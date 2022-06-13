@@ -13,6 +13,7 @@ import {
 import {BackgroundImage} from "react-native-elements/dist/config";
 import {LinearGradient} from "expo-linear-gradient";
 import HomePageStyles from './HomePageStyles'
+import {useSelector} from "react-redux";
 
 const styles = HomePageStyles();
 

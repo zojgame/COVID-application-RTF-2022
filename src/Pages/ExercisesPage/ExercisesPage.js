@@ -1,32 +1,13 @@
 import React, {Component, useState} from "react";
 import {View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
-
-
-const InfoTxt = 'На данной странице предоставлены различные комплексы упражнений, способствующих восстановлению ' +
-    'работы различных органов. Для того, чтобы приступить к упражнениям, выберите на что будете делать упражнения.w';
-
-const BrainTxt = 'Инфекция нарушает функции центральной нервной системы и пострадать от этого может даже' +
-    ' человек, не имевший раньше подобных заболеваний. Это могут быть' +
-    ' и тревожные расстройства, и депрессивные состояния, и подавленность.';
-const MusculesTxt = 'Боли в мышцах и суставах после ковида возникают у немалого процента перенесших это тяжелое заболевание.' +
-    ' Особенно высок риск развития таких осложнений у пожилых пациентов, которые болели в средней, либо тяжелой форме. ' +
-    'Нередко это осложнение сочетается с поражением мышц, связок, сухожилий, суставов и других органов.';
-const LungsTxt = 'Пневмония, осложненная Covid-19, редко проходит совсем без последствий. ' +
-    'Даже при получении отрицательного теста после лечения, нередко сопутствует одышка. ' +
-    'Причиной является фиброз – пораженные участки легкого не могут функционировать в полную силу, поэтому приходится дышать чаще. ' +
-    'Восстановление легочной функции можно начать уже во время пневмонии.';
-const HeartTxt = 'По последним данным короновирус может оказывать различное влияние на сердечно- сосудистую систему: ' +
-    'острое поражение сердечной мышцы; развитие хронического заболевания сердца; ' +
-    'приводить к декомпенсации, имеющихся хронических сердечно- сосудистых заболеваний; ' +
-    'вызывать токсическое влияние препаратов, применяемых для лечения короновирусной инфекции.';
+import {useSelector} from "react-redux";
 
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
         //alignItems: 'center',
-
     },
     preview: {
         display: 'flex',
@@ -57,29 +38,40 @@ const styles = StyleSheet.create({
         overflowX: 'scroll',
         whiteSpace: 'nowrap',
     },
+    categoryText:{
+        marginTop:'3vw',
+        padding: '4vw',
+        paddingBottom:0,
+        fontSize:'6vw',
+        fontWeight:'bold',
+    },
     exerciseBtn: {
         marginRight: '3vw',
-
     },
     exreciseContent: {
         width: '40vw',
-        height: '50vw',
+        height: '32vw',
         borderRadius: 15,
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
+        overflow:'hidden',
     },
     exerciseTxt: {
-        textAlign: 'center',
+        marginTop:'auto',
+        marginBottom:'auto',
+        marginLeft:'3vw',
+        textAlign: 'left',
         color: 'white',
         fontSize: '7vw',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        zIndex:100,
     },
     exerciseImg: {
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        width: '38vw',
-        height: '38vw',
+        //marginRight: 'auto',
+        //marginLeft: 'auto',
+        width: '40vw',
+        height: '40vw',
+        position:'absolute',
+        bottom:'-5vw',
+        right:'-5vw',
     },
     conclusionContainer:{
         display:'flex',
@@ -89,7 +81,6 @@ const styles = StyleSheet.create({
     conclusionImage:{
         width:'50vw',
         height:'50vw',
-
     },
     conclusionTxt:{
         textAlign:'left',
@@ -115,13 +106,14 @@ export default function ExercisesPage({navigation}) {
                 </LinearGradient>
             </View>
             <View>
+                <Text style={styles.categoryText}>Категории упражнений</Text>
                 <ScrollView style={styles.exerciseContainer} showsVerticalScrollIndicator={false} horizontal={true}>
                     <View style={styles.exerciseBtn}>
                         <TouchableOpacity onPress={() => {
                             navigation.navigate('MusculesExercisesPage')
                         }}>
-                            <LinearGradient style={styles.exreciseContent} colors={['#D42A2E', '#F09F76']}>
-                                <Image style={styles.exerciseImg} source={require('../../Images/armExercise.png')}/>
+                            <LinearGradient style={styles.exreciseContent} colors={['#C8383B', '#D1585A']}>
+                                <Image  style={styles.exerciseImg} source={require('../../Images/armExercise.png')}/>
                                 <Text style={styles.exerciseTxt}>Мышцы</Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -130,7 +122,7 @@ export default function ExercisesPage({navigation}) {
                         <TouchableOpacity onPress={() => {
                             navigation.navigate('BrainExercisePage')
                         }}>
-                            <LinearGradient style={styles.exreciseContent} colors={['#21BFF7', '#68E3F8']}>
+                            <LinearGradient style={styles.exreciseContent} colors={['#0796C9', '#09B1CD']}>
                                 <Image style={styles.exerciseImg} source={require('../../Images/brainExercise.png')}/>
                                 <Text style={styles.exerciseTxt}>Мозг</Text>
                             </LinearGradient>
@@ -140,7 +132,7 @@ export default function ExercisesPage({navigation}) {
                         <TouchableOpacity onPress={() => {
                             navigation.navigate('LungsExercisesPage')
                         }}>
-                            <LinearGradient style={styles.exreciseContent} colors={['#7A67CB', '#9483E9']}>
+                            <LinearGradient style={styles.exreciseContent} colors={['#5941BD', '#9483E9']}>
                                 <Image style={styles.exerciseImg} source={require('../../Images/lungsExercise.png')}/>
                                 <Text style={styles.exerciseTxt}>Легкие</Text>
                             </LinearGradient>
@@ -150,7 +142,7 @@ export default function ExercisesPage({navigation}) {
                         <TouchableOpacity onPress={() => {
                             navigation.navigate('HeartExercisesPage')
                         }}>
-                            <LinearGradient style={styles.exreciseContent} colors={['#EDC078', '#DF912A']}>
+                            <LinearGradient style={styles.exreciseContent} colors={['#CB811F', '#E7AA47']}>
                                 <Image style={styles.exerciseImg} source={require('../../Images/heartExercise.png')}/>
                                 <Text style={styles.exerciseTxt}>Сердце</Text>
                             </LinearGradient>
