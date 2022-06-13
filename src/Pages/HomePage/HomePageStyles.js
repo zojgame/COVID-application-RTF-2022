@@ -7,6 +7,7 @@ export default function HomePageStyles() {
             backgroundColor: '#8D74C8',
             display: 'flex',
             flexDirection: 'column',
+            position:'relative'
         },
         block1: {
             width: '100%',
@@ -24,7 +25,7 @@ export default function HomePageStyles() {
             fontWeight:'300',
             lineHeight: '12vw',
             letterSpacing: '2vw',
-            paddingBottom: 200,
+            paddingBottom:'3vw',
             textAlign: 'left',
             color: 'white',
             backgroundColor: 'rgba(141, 116, 200,0.3);',
@@ -36,7 +37,6 @@ export default function HomePageStyles() {
             borderTopRightRadius: 20,
             paddingTop: '5vw',
             paddingBottom: '7vw',
-            marginBottom: '1vw',
             position: 'relative',
             display: 'grid',
             top: '-10%',

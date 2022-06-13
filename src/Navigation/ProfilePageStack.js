@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import ProfilePage from "../Pages/ProfilePage";
+import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 import AuthorizationPage from "../Pages/Authorization/AuthorizationPage";
 import RegistrationPage from "../Pages/Authorization/RegistrationPage";
 import AuthorizationPageConstructor from "../Pages/Authorization/AuthorizationPageConstructor";
