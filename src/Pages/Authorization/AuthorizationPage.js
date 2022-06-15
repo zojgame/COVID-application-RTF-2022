@@ -99,6 +99,7 @@ function AuthorizationPage(props) {
                         dispatch(addUserToken(res.token))
                         dispatch(getUserData(res.token))
                         props.navigation.replace('HomePage')
+                        props.navigation.replace('ProfilePage')
                         props.navigation.navigate('HomePage')
                     }
                 }

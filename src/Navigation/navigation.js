@@ -5,7 +5,7 @@ import ProfilePage from '../Pages/ProfilePage/ProfilePage';
 import SettingPage from '../Pages/SettingPage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AuthorizationPage from '../Pages/Authorization/AuthorizationPage';
-import NotesPage from '../Pages/NotesPage';
+import NotesPage from '../Pages/NotesPage/NotesPage';
 import CustomDrawer from './CustomDrawer';
 import HomePageConstructor from "../Pages/HomePage/HomePageConstructor";
 import ExercisesPageStack from "./ExercisesPageStack";
