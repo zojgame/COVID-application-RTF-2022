@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
 import {TextArea} from "native-base";
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function ModalContent() {
+export default function ModalContent(props) {
     let [firstName,changeFirstName]=useState('');
     let [secondName,changeSecondName]=useState('');
     let [lastName,changeLastName]=useState('');
@@ -63,6 +63,7 @@ export default function ModalContent() {
                 <Text>Коментарий</Text>
                 <TextInput style={styles.input} value={comment} type={'text'} name={'comment'} onChange={(e)=>changeComment(e.target.value)}/>
             </View>
+            <TouchableOpacity onPress={()=>props.changeIsModalVisible(false)}>Отправить</TouchableOpacity>
 
         </View>
     )

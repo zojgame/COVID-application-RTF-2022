@@ -1,6 +1,17 @@
-import React, {Component, useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
+import React, {Component, useEffect, useState} from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+    ScrollView,
+    Modal,
+    TextInput,
+} from 'react-native';
 import {BarChart} from "react-native-chart-kit";
+import {useDispatch, useSelector} from "react-redux";
+import {addNotesCard} from "../../redux/notesReducer";
 
 const styles = StyleSheet.create({
     btnContainer: {
@@ -69,17 +80,74 @@ const styles = StyleSheet.create({
         width: '40vw',
         marginHorizontal: 'auto',
         marginTop: '2.5vw',
+    },
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modal: {
+        display: "flex",
+        width: '80vw',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginVertical: 'auto',
+        marginHorizontal: 'auto'
+    },
+    modalText: {
+        fontSize: '5vw',
+        textAlign: 'center',
+        color: 'black',
+
+    },
+    modalContent:{
+      display:'flex',
+      flexDirection:'column',
+    },
+    modalContentInputBlock:{
+      width:'70vw',
+        marginHorizontal:'auto',
+        marginBottom:'3vw',
+    },
+    modalInput:{
+        backgroundColor:'rgba(212, 204, 229,0.5)',
+        fontSize:'5vw',
+    },
+    modalBtnBlock: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    modalCloseBtn: {
+        marginTop: '2vw',
+
+    },
+    closeBtnTxt: {
+        fontSize: '4vw',
+        color: 'blue',
+        textAlign: 'center',
     }
 })
 
 function NotesPage(props) {
-    let cards=cardData.reverse();
+    let dispatch = useDispatch()
+    let cards = useSelector(store=>store.notes.notes);
+    let [isModalVisible, changeIsModalVisible] = useState(false)
     let [diagramTitle, changeDiagramTitle] = useState('пульса');
-    let [diagramData,changeDataDiagram]=useState(getDiagramData('Pulse',cards))
+    let [diagramData, changeDataDiagram] = useState(getDiagramData('Pulse', cards))
+    let [date,changeDate]=useState()
+    let [pulse,changePulse]=useState();
+    let [temperature,changeTemperature]=useState();
+    let [sleepTime,changeSleepTime]=useState();
+    let [exercises, changeExercises]=useState();
+    useEffect(()=>{
+        changeDataDiagram(getDiagramData('Pulse', cards))
+    },[])
     const data = {
         datasets: [
             {
-                data: diagramData
+                data: diagramData.reverse()
             }
         ]
     };
@@ -91,13 +159,32 @@ function NotesPage(props) {
         backgroundGradientTo: 'rgb(242, 242, 242)',
     };
 
+    function addBtnOnCLick(){
+        if(date&&pulse&&temperature&&sleepTime&&exercises){
+            dispatch(addNotesCard(
+                {
+                    Date:date,
+                    Pulse:Number(pulse),
+                    Temperature:Number(temperature),
+                    SleepTime:Number(sleepTime),
+                    Exercises:Number(exercises)
+                }
+            ))
+            changeIsModalVisible(false)
+        }
+    }
+
+    function changeInput(e,callback){
+        callback(e.target.value)
+    }
+
     return (
         <ScrollView>
             <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {
                                       changeDiagramTitle('пульса');
-                                      changeDataDiagram(getDiagramData('Pulse',cards))
+                                      changeDataDiagram(getDiagramData('Pulse', cards))
                                   }}
                 >
                     <Text style={styles.btnTxt}>Пульс</Text>
@@ -105,7 +192,7 @@ function NotesPage(props) {
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {
                                       changeDiagramTitle('времени сна')
-                                      changeDataDiagram(getDiagramData('SleepTime',cards))
+                                      changeDataDiagram(getDiagramData('SleepTime', cards))
                                   }}
                 >
                     <Text style={styles.btnTxt}>Время сна</Text>
@@ -113,7 +200,7 @@ function NotesPage(props) {
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {
                                       changeDiagramTitle('температуры')
-                                      changeDataDiagram(getDiagramData('Temperature',cards))
+                                      changeDataDiagram(getDiagramData('Temperature', cards))
                                   }}
                 >
                     <Text style={styles.btnTxt}>Температура</Text>
@@ -121,7 +208,7 @@ function NotesPage(props) {
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {
                                       changeDiagramTitle('выполнения упражнений')
-                                      changeDataDiagram(getDiagramData('Exercises',cards))
+                                      changeDataDiagram(getDiagramData('Exercises', cards))
                                   }}
                 >
                     <Text style={styles.btnTxt}>Упражнения</Text>
@@ -137,9 +224,85 @@ function NotesPage(props) {
                 verticalLabelRotation={30}
             />
 
-            <TouchableOpacity style={styles.addBtn}>
+            <TouchableOpacity style={styles.addBtn} onPress={() => changeIsModalVisible(true)}>
                 <Text style={styles.addBtnText}>Добавить</Text>
             </TouchableOpacity>
+
+            <Modal transparent={true}
+                   animationType={"fade"}
+                   visible={isModalVisible}
+                   onRequestClose={() => changeIsModalVisible(false)}
+            >
+                <TouchableOpacity disabled={true} style={styles.modalContainer}>
+                <View style={styles.modal}>
+                    <Text style={styles.modalText}>Карточка самонаблюдения</Text>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalContentInputBlock}>
+                            <label htmlFor={'Date'}>Дата</label>
+                            <TextInput
+                                style={styles.modalInput}
+                                name={'Date'}
+                                type={'date'}
+                                value={date}
+                                onChange={(e)=>changeInput(e,changeDate)}
+                            />
+                        </View>
+                        <View style={styles.modalContentInputBlock}>
+                            <label htmlFor={'Pulse'}>Средний пульс за день</label>
+                            <TextInput
+                                style={styles.modalInput}
+                                name={'Pulse'}
+                                keyboardType='numeric'
+                                vlaue={pulse}
+                                onChange={(e)=>changeInput(e,changePulse)}
+                            />
+                        </View>
+                        <View style={styles.modalContentInputBlock}>
+                            <label htmlFor={'Temperature'}>Средняя температура за день</label>
+                            <TextInput
+                                style={styles.modalInput}
+                                name={'Temperature'}
+                                keyboardType='numeric'
+                                type={'number'}
+                                vlaue={temperature}
+                                onChange={(e)=>changeInput(e,changeTemperature)}
+                            />
+                        </View>
+                        <View style={styles.modalContentInputBlock}>
+                            <label htmlFor={'SleepTime'}>Время сна</label>
+                            <TextInput
+                                style={styles.modalInput}
+                                name={'SleepTime'}
+                                keyboardType='numeric'
+                                type={'number'}
+                                vlaue={sleepTime}
+                                onChange={(e)=>changeInput(e,changeSleepTime)}
+                            />
+                        </View>
+                        <View style={styles.modalContentInputBlock}>
+                            <label htmlFor={'Exercises'}>Выполненные упражнения</label>
+                            <TextInput
+                                style={styles.modalInput}
+                                name={'Exercises'}
+                                keyboardType='numeric'
+                                type={'number'}
+                                vlaue={exercises}
+                                onChange={(e)=>changeInput(e,changeExercises)}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.modalBtnBlock}>
+                        <TouchableOpacity style={styles.modalCloseBtn} onPress={() => changeIsModalVisible(false)}>
+                            <Text style={styles.closeBtnTxt}>Отмена</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.modalCloseBtn} onPress={addBtnOnCLick}>
+                            <Text style={styles.closeBtnTxt}>Добавить</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                </TouchableOpacity>
+            </Modal>
+
             <View>
                 {
                     cards.map(elem => {
@@ -161,19 +324,16 @@ function NotesPage(props) {
     );
 }
 
-function getDiagramData(type,data){
-    let result=[]
-    if(type==='Pulse'){
-        return data.map((element)=>element.Pulse).slice(0, 7);
-    }
-    else if(type==='Temperature'){
-        return data.map((element)=>element.Temperature).slice(0, 7);
-    }
-    else if(type==='Exercises'){
-        return data.map((element)=>element.Exercises).slice(0, 7);
-    }
-    else{
-        return data.map((element)=>element.SleepTime).slice(0, 7);
+function getDiagramData(type, data=[]) {
+    console.log(data)
+    if (type === 'Pulse') {
+        return data.map((element) => element.Pulse).slice(0, 7);
+    } else if (type === 'Temperature') {
+        return data.map((element) => element.Temperature).slice(0, 7);
+    } else if (type === 'Exercises') {
+        return data.map((element) => element.Exercises).slice(0, 7);
+    } else {
+        return data.map((element) => element.SleepTime).slice(0, 7);
     }
 }
 

@@ -4,8 +4,8 @@ import AuthorizationPage from "./AuthorizationPage";
 import {View,Text} from "react-native";
 
 function AuthorizationPageConstructor(props) {
-    let [loginValue, setUserLogin] = useState();
-    let [passwordValue, setUserPassword] = useState();
+    let [loginValue, setUserLogin] = useState('');
+    let [passwordValue, setUserPassword] = useState('');
     useLayoutEffect(() => {
         getUserData().then(res => {
             setUserLogin(res.username)
@@ -25,7 +25,7 @@ function AuthorizationPageConstructor(props) {
         }
     }
 
-    return loginValue && passwordValue
+    return (loginValue && passwordValue)
         ? <AuthorizationPage navigation={props.navigation} login={loginValue} password={passwordValue}/>
         : <View><Text>Загрузка...</Text></View>
 

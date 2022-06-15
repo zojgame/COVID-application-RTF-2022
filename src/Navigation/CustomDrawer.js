@@ -3,6 +3,7 @@ import {  Image, TouchableOpacity, StyleSheet, Text, View,} from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Navigation from './navigation';
+import {useSelector} from "react-redux";
 
 const styles = StyleSheet.create({
     container:{
@@ -34,12 +35,13 @@ const styles = StyleSheet.create({
 });
 
 export default function CustomDrawer(props) {
+    let userData= useSelector(store=>store.userData.userData)
   return (
     <View >
       <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
           <View style={styles.box}>
               <Image style={styles.boxImage} source={require("../Images/stopCovid.png")}/>
-              <Text style={styles.boxText}>Имя<br/>Фамилия</Text>
+              <Text style={styles.boxText}>{userData.second_name??'Не'}<br/>{userData.first_name??'авторизован'}</Text>
           </View>
           <View style={{backgroundColor: 'white'}}>
             <DrawerItemList {...props} />
